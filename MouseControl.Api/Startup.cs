@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using MouseControl.Api.Configurations;
 using MouseControl.Domain.Entities;
+using MouseControl.Domain.Handlers;
 using MouseControl.Domain.Interfaces;
 using MouseControl.Service;
 
@@ -14,6 +15,7 @@ namespace MouseControl.Api
         {
             services.AddHostedService<Worker>();
             services.AddSignalR().AddMessagePackProtocol();
+            services.AddSingleton<IMouseHandler, MouseHandler>();
             services.AddCors(options => options.AddPolicy("CorsPolicy",
             builder =>
             {
